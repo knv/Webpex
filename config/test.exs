@@ -12,3 +12,9 @@ config :logger, level: :warning
 
 # Initialize plugs at runtime for faster test compilation
 config :phoenix, :plug_init_mode, :runtime
+
+config :webpex, :runtime,
+  data_directory: "priv/test",  # should be an absolute path
+  #token: 456e910f-3d07-470d-a862-1deb1494a38e # change it
+  valid_image_qualities: [80, 90, 95, 100],
+  valid_image_sizes: [ {300,300}, {500,500} ]

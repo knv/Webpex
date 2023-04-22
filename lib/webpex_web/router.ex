@@ -5,8 +5,22 @@ defmodule WebpexWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", WebpexWeb do
+  pipeline :img do
+    plug :accepts, ["webp", "jpg", "png"]
+  end
+
+  scope "/", WebpexWeb do
+    pipe_through :img
+
+    get "/image/:image_id", ImageController, :show
+  end
+
+  scope "/api", WebpexWeb.API, as: :api do
     pipe_through :api
+
+    scope "/v1", V1, as: :v1 do
+      resources "/images", APIController, only: [:create, :delete]
+    end
   end
 
   # Enable LiveDashboard in development
