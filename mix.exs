@@ -19,7 +19,7 @@ defmodule Webpex.MixProject do
   def application do
     [
       mod: {Webpex.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :crypto]
     ]
   end
 

@@ -8,7 +8,7 @@
 import Config
 
 # Configures the endpoint
-config :webpex, WebpexWeb.Endpoint,
+config :webpex, WebpexWeb.Endpoint, server: true,
   url: [host: "localhost"],
   render_errors: [
     formats: [json: WebpexWeb.ErrorJSON],

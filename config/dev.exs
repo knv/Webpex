@@ -54,7 +54,7 @@ config :phoenix, :plug_init_mode, :runtime
 
 config :webpex, :runtime,
   #data_directory: "priv/test",  # should be an absolute path
-  data_directory: "/home/teamapp/ka2c/k45/carsparency/imagex_data/",  # should be an absolute path
+  data_directory: System.get_env("DATA_DIRECTORY"),  # should be an absolute path
   #server_address: 127.0.0.1:8080
   #token: "456e910f-3d07-470d-a862-1deb1494a38e" # change it
   #default_image_quality: 95

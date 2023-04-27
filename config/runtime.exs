@@ -37,6 +37,7 @@ if config_env() == :prod do
   port = String.to_integer(System.get_env("PORT") || "4000")
 
   config :webpex, WebpexWeb.Endpoint,
+
     url: [host: host, port: 443, scheme: "https"],
     http: [
       # Enable IPv6 and bind on all interfaces.
@@ -47,6 +48,23 @@ if config_env() == :prod do
       port: port
     ],
     secret_key_base: secret_key_base
+
+  valid_image_qualities =
+    System.get_env("VALID_IMAGE_QUALITIES")
+    |> String.split(",")
+    |> Enum.map(&String.trim/1)
+    |> Enum.map(&(String.to_integer/1))
+
+  valid_image_widths =
+    System.get_env("VALID_IMAGE_WIDTHS")
+    |> String.split(",")
+    |> Enum.map(&String.trim/1)
+    |> Enum.map(&(String.to_integer/1))
+
+  config :webpex, :image,
+    data_directory: System.get_env("DATA_DIRECTORY"), #/home/teamapp/ka2c/k45/carsparency/imagex_data/",  # should be an absolute path
+    valid_image_qualities: valid_image_qualities,
+    valid_image_widths: valid_image_widths
 
   # ## SSL Support
   #
